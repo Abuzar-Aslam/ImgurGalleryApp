@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Gallery</string>
+    <string name="about">About</string>
+    <string name="baseurl">"https://api.imgur.com/"</string>
+    <string name="title_activity_navigation">NavigationActivity</string>
+    <string name="sort">top</string>
+    <string name="window">all</string>
+    <string name="clientId">Client-ID 7c5f030c751c076</string>
+    <string name="section_top">top</string>
+    <string name="section_hot">hot</string>
+    <string name="viral">Viral</string>
+    <string name="show">Show</string>
+    <string name="hide">Hide</string>
+    <string name="generic_section">Section</string>
+    <string name="app_version">App Version:</string>
+    <string name="build_time">Build Time:</string>
+    <string name="author_name">Author Name</string>
+    <array name="viewType">
+        <item name="staggered">Staggered</item>
+        <item name="grid">Grid</item>
+        <item name="list">List</item>
+    </array>
+</resources>

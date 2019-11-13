@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.task.imgurgalleryapp.ui.gallery.GalleryViewModel" />
+    </data>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/grey"
+            android:orientation="vertical">
+
+            <Spinner
+                android:id="@+id/viewTypeSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:layout_marginRight="@dimen/margin_small"
+                android:foreground="@drawable/bg_outline"
+                android:onItemSelected="@{(parent,view,pos,id)->viewModel.onSelectItem(pos)}"
+                android:overlapAnchor="false" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/padding_small">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@id/sectionRadioGroup"
+                    android:layout_toLeftOf="@id/sectionRadioGroup"
+                    android:text="@string/generic_section"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/text_medium"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:id="@+id/sectionRadioGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:onCheckedChanged="@{viewModel.onSectionChanged}"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/sectionHot"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="@string/section_hot" />
+
+                    <RadioButton
+                        android:id="@+id/sectionTop"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/section_top" />
+
+                </RadioGroup>
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/padding_small">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@id/viralRadioGroup"
+                    android:layout_toLeftOf="@id/viralRadioGroup"
+                    android:text="@string/viral"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/text_medium"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:id="@+id/viralRadioGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:onCheckedChanged="@{viewModel.onViralChanged}"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/showViral"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="@string/show" />
+
+                    <RadioButton
+                        android:id="@+id/hideViral"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/hide" />
+
+                </RadioGroup>
+
+            </RelativeLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:onScrollListener="@{viewModel}" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            app:visible="@{viewModel.refreshing}">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+</layout>
